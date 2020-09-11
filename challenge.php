@@ -3,17 +3,18 @@
 define("FILENAME", "results.txt");
 
 /*
-	Differents Datasets for testing
-
-	$array = [ 'oportunidad', 'oregon', 'analfabeto', 'dato',  'analia',  'olla', 'sarro', 'nidos' ];
-	$array = [ 'oportunidad', 'oregon', 'analfabeto',  'analia',  'dato',  'olla', 'sarro', 'nidos' ];
-	$array = [ 'oso', 'perro', 'zapallo', 'oregon', 'nariz', 'ostia', 'ofrenda', 'sandia', 'alamo', 'orrap', 'arbol', 'levas', 'almuerzo' ];
-	$array = [ 'oso', 'almummerzo', 'perro', 'zapallo', 'oregon', 'nariz', 'ostia', 'ofrenda', 'sandia', 'alamo', 'orrap', 'arbol', 'levas', 'almuerzo', 'oso', 'perro', 'zapallo', 'oregon', 'nariz', 'ostia', 'ofrenda', 'sandia', 'alamo', 'orrap', 'arbol', 'levas', 'almuerzo', 'oso', 'perro', 'zapaallo', 'oreegon', 'narriz', 'ostia', 'ofrenda', 'sandia', 'alamo', 'orrap', 'arbol', 'levas', 'almuerzo', 'oso', 'perro', 'zapallo', 'oreegon', 'naariz', 'osssstia', 'offfrenda', 'sannndia', 'allllamo', 'orraaap', 'arrrrbol', 'leeeevas' ];
-	$array = [ 'chair', 'height', 'racket', 'touch', 'tunic' ];
+#
+#	Differents Datasets for testing
+#
+#	$array = [ 'oportunidad', 'oregon', 'analfabeto', 'dato',  'analia',  'olla', 'sarro', 'nidos' ];
+#	$array = [ 'oportunidad', 'oregon', 'analfabeto',  'analia',  'dato',  'olla', 'sarro', 'nidos' ];
+#	$array = [ 'oso', 'perro', 'zapallo', 'oregon', 'nariz', 'ostia', 'ofrenda', 'sandia', 'alamo', 'orrap', 'arbol', 'levas', 'almuerzo' ];
+#	$array = [ 'oso', 'almummerzo', 'perro', 'zapallo', 'oregon', 'nariz', 'ostia', 'ofrenda', 'sandia', 'alamo', 'orrap', 'arbol', 'levas', 'almuerzo', 'oso', 'perro', 'zapallo', 'oregon', 'nariz', 'ostia', 'ofrenda', 'sandia', 'alamo', 'orrap', 'arbol', 'levas', 'almuerzo', 'oso', 'perro', 'zapaallo', 'oreegon', 'narriz', 'ostia', 'ofrenda', 'sandia', 'alamo', 'orrap', 'arbol', 'levas', 'almuerzo', 'oso', 'perro', 'zapallo', 'oreegon', 'naariz', 'osssstia', 'offfrenda', 'sannndia', 'allllamo', 'orraaap', 'arrrrbol', 'leeeevas' ];
+#	$array = [ 'chair', 'height', 'racket', 'touch', 'tunic' ];
+#
 */
 
-$array = [ 'chair', 'racket', 'touch', 'height',  'tunic'];
-
+$array = [ 'chair', 'height', 'racket', 'touch', 'tunic' ];
 
 /**
  * Verifies and try to make circle with input words
@@ -72,14 +73,20 @@ function getNext(array $list, string $letter, array $circle = [], int $length ) 
 	
 	foreach($list as $key => $value){
 
-		if($letter == $value[0]){
-
+		if(!empty($value) && $letter == $value[0]){
 			$circle[] = $value;
 			unset($list[$key]);
-			$circle = getNext($list, $value[-1], $circle, $length);
+			$letter =  $value[-1];
+			continue;
+		}
+
+		if(array_key_last($list) == $key ){
+			echo 1;
+			$circle = getNext($list, $letter, $circle, $length);
 			return $circle;
 		}
 	}
+
 
 	if(count($circle) != $length){
 		$new = array_merge($circle, $list);
