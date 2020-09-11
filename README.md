@@ -1,5 +1,5 @@
 # Test for COR
------
+
 #### Challenge task
 
 >  *Given a list of words, determine whether the words can be chained to form a circle. 
