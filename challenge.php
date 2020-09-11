@@ -81,7 +81,6 @@ function getNext(array $list, string $letter, array $circle = [], int $length ) 
 		}
 
 		if(array_key_last($list) == $key ){
-			echo 1;
 			$circle = getNext($list, $letter, $circle, $length);
 			return $circle;
 		}
