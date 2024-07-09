@@ -1,4 +1,4 @@
-# Test for COR
+# Challenge Words Circle
 
 #### Challenge task
 
